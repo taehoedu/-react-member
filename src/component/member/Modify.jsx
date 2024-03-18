@@ -12,12 +12,10 @@ const Modify = () => {
     const [curMId, setCurMId] = useState('');
     const [curMMail, setCurMMail] = useState('');
     const [curMPhone, setCurMPhone] = useState('');
-    const [curMProfileThum, setCurMProfileThum] = useState('');
 
     const [mId, setMId] = useState('');
     const [mMail, setMMail] = useState('');
     const [mPhone, setMPhone] = useState('');
-    const [mProfile, setMProfile] = useState('');
 
     const value = useContext(MemberContext);
 
@@ -47,10 +45,7 @@ const Modify = () => {
         } else if (input_name === 'm_phone') {
             setMPhone(input_value);
 
-        } else if (input_name === 'm_profile') {
-            setMProfile(input_value);
-
-        }
+        } 
 
     }
 
@@ -113,7 +108,6 @@ const Modify = () => {
                 setCurMId(data.selectedMemberDto.m_id);
                 setCurMMail(data.selectedMemberDto.m_mail);
                 setCurMPhone(data.selectedMemberDto.m_phone);
-                setCurMProfileThum(data.selectedMemberDto.m_profile_thum);                
 
             },
             error: function(data) {
