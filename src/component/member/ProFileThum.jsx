@@ -56,20 +56,6 @@ const ProFileThum = () => {
 
     }
 
-    const profileThumNextBtnClickHandler = () => {
-        printLog(DEFAULT_COMPONENT_NAME, 'profileThumNextBtnClickHandler()');
-
-        setProfileThumDtoIdx((idx) => {
-            idx++;
-            if (idx >= profileThumDtos.length)
-                idx = 0;
-
-            return idx;
-
-        });
-
-    }
-
     const profileThumPreBtnClickHandler = () => {
         printLog(DEFAULT_COMPONENT_NAME, 'profileThumPreBtnClickHandler()');
 
@@ -77,6 +63,20 @@ const ProFileThum = () => {
             idx--;
             if (idx < 0)
                 idx = profileThumDtos.length - 1;
+
+            return idx;
+
+        });
+
+    }
+
+    const profileThumNextBtnClickHandler = () => {
+        printLog(DEFAULT_COMPONENT_NAME, 'profileThumNextBtnClickHandler()');
+
+        setProfileThumDtoIdx((idx) => {
+            idx++;
+            if (idx >= profileThumDtos.length)
+                idx = 0;
 
             return idx;
 
@@ -143,7 +143,8 @@ const ProFileThum = () => {
             success: function(data) {
                 printLog(DEFAULT_COMPONENT_NAME, 'AJAX GET PROFILE THUM COMMUNICATION SUCCESS!!');
                 
-                setProfileThumDtos(data.profileThumDtos);
+                if (data != null)
+                    setProfileThumDtos(data.profileThumDtos);
 
             },
             error: function(data) {
@@ -205,15 +206,17 @@ const ProFileThum = () => {
                     <>
                         <a href="#none" onClick={profileThumClickHandler}>
                             <img src={`${IMAGE_SERVER_BASIC_URL}/${mId}/${curMProfileThum}`} 
-                                    style={{maxWidth: '100px', minWidth: '100px', borderRadius: '50px'}}/>
+                                 style={{maxWidth: '100px', minWidth: '100px', borderRadius: '50px'}}/>
                         </a>
                         <br />
                         <a href="#none" onClick={deleteProfileThumHandler}>대표이미지 삭제</a>
                     </>
                 :
-                    <>
-                        <img src="/res/img/profile_default.png" 
-                                style={{maxWidth: '100px', minWidth: '100px', borderRadius: '50px'}}/>
+                    <>  
+                        <a href="#none" onClick={profileThumClickHandler}>
+                            <img src="/res/img/profile_default.png" 
+                                 style={{maxWidth: '100px', minWidth: '100px', borderRadius: '50px'}}/>
+                        </a>
                     </>    
             }
             </p>
@@ -226,15 +229,28 @@ const ProFileThum = () => {
                             <a href="#none" onClick={profileModalCloseBtnClickHandler}>CLOSE</a>
                         </div>
                         <div className="profile_thum">
-                            <div className="pre_btn">
-                                <a href="#none" onClick={profileThumPreBtnClickHandler}>PRE_BTN</a>
-                            </div>
-                            <div className="thum">
-                                <img src={`${IMAGE_SERVER_BASIC_URL}/${mId}/${profileThumDtos[profileThumDtoIdx]['pt_thum']}`}/>
-                            </div>
-                            <div className="next_btn">
-                                <a href="#none" onClick={profileThumNextBtnClickHandler}>NEXT_BTN</a>
-                            </div>
+                            {
+                                profileThumDtos != null
+                                ?
+                                <>
+                                    <div className="pre_btn">
+                                        <a href="#none" onClick={profileThumPreBtnClickHandler}>PRE_BTN</a>
+                                    </div>
+                                    <div className="thum">
+                                        <img src={`${IMAGE_SERVER_BASIC_URL}/${mId}/${profileThumDtos[profileThumDtoIdx]['pt_thum']}`} />
+                                    </div>
+                                    <div className="next_btn">
+                                        <a href="#none" onClick={profileThumNextBtnClickHandler}>NEXT_BTN</a>
+                                    </div>
+                                </>
+                                :
+                                <>
+                                    <div className="thum">
+                                        <img src="/res/img/profile_default.png" />
+                                    </div>
+                                </>
+                            }
+                            
                         </div>
                     </div>
                 :
