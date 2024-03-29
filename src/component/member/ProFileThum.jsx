@@ -3,6 +3,7 @@ import $, { ajax } from 'jquery';
 import { useNavigate } from "react-router-dom";
 import { MemberContext } from "../../App";
 import { printLog } from '../../util/logger.js';
+import { SERVER_URL } from '../../util/const';
 
 const DEFAULT_COMPONENT_NAME = 'ProFileThum';
 const IMAGE_SERVER_BASIC_URL = 'http://127.0.0.1:8090/memberpjt';   // 14.42.124.125
@@ -92,7 +93,7 @@ const ProFileThum = () => {
         formData.append("sessionID", sessionID);
 
         $.ajax({
-            url: 'http://localhost:8090/member/get_member',
+            url: `${SERVER_URL}/member/get_member`,
             method: 'POST',
             processData: false,
             contentType: false,
@@ -132,7 +133,7 @@ const ProFileThum = () => {
         formData.append("m_id", mId);
 
         $.ajax({
-            url: 'http://localhost:8090/member/get_profile_thums',
+            url: `${SERVER_URL}/member/get_profile_thums`,
             method: 'post',
             processData: false,
             contentType: false,
@@ -165,7 +166,7 @@ const ProFileThum = () => {
         formData.append("m_id", mId);
 
         $.ajax({
-            url: 'http://localhost:8090/member/delete_profile_thum',
+            url: `${SERVER_URL}/member/delete_profile_thum`,
             method: 'post',
             processData: false,
             contentType: false,

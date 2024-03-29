@@ -3,6 +3,7 @@ import $, { ajax } from 'jquery';
 import { useNavigate } from "react-router-dom";
 import { MemberContext } from "../../App";
 import ProFileThum from "./ProFileThum";
+import { SERVER_URL } from '../../util/const';
 
 const IMAGE_SERVER_BASIC_URL = 'http://127.0.0.1:8090/memberpjt';   // 14.42.124.125
 
@@ -85,7 +86,7 @@ const Modify = () => {
         formData.append("sessionID", sessionID);
 
         $.ajax({
-            url: 'http://localhost:8090/member/get_member',
+            url: `${SERVER_URL}/member/get_member`,
             method: 'POST',
             processData: false,
             contentType: false,
@@ -136,7 +137,7 @@ const Modify = () => {
         if (files.length !== undefined) formData.append("m_profile_img", files[0]);
 
         $.ajax({
-            url: 'http://localhost:8090/member/member_modify',
+            url: `${SERVER_URL}/member/member_modify`,
             method: 'post',
             processData: false,
             contentType: false,

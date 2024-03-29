@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import $ from 'jquery';
 import { useNavigate } from "react-router-dom";
+import { SERVER_URL } from '../../util/const';
 
 const Join = () => {
 
@@ -87,7 +88,7 @@ const Join = () => {
         formData.append("m_profile_img", files[0]);
 
         $.ajax({
-            url: 'http://localhost:8090/member/member_join',
+            url: `${SERVER_URL}/member/member_join`,
             method: 'post',
             processData: false,
             contentType: false,

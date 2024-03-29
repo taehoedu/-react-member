@@ -4,6 +4,7 @@ import $ from 'jquery';
 import { useNavigate } from "react-router-dom";
 import { MemberContext } from "../App";
 import { printLog } from '../util/logger.js';
+import { SERVER_URL } from '../util/const';
 
 const DEFAULT_COMPONENT_NAME = 'Nav';
 
@@ -41,7 +42,7 @@ const Nav = (props) => {
         printLog(DEFAULT_COMPONENT_NAME, 'ajax_member_logout()');
 
         $.ajax({
-            url: 'http://localhost:8090/member/member_logout',
+            url: `${SERVER_URL}/member/member_logout`,
             method: 'post',
             processData: false,
             contentType: false,
@@ -83,7 +84,7 @@ const Nav = (props) => {
         formData.append("sessionID", sessionStorage.getItem('sessionID'));
 
         $.ajax({
-            url: 'http://localhost:8090/member/member_delete',
+            url: `${SERVER_URL}/member/member_delete`,
             method: 'post',
             processData: false,
             contentType: false,

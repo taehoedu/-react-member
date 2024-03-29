@@ -3,6 +3,7 @@ import $ from 'jquery';
 import { useNavigate } from "react-router-dom";
 import { MemberContext } from "../../App";
 import { printLog } from '../../util/logger.js';
+import { SERVER_URL } from '../../util/const';
 
 const DEFAULT_COMPONENT_NAME = 'Login';
 
@@ -72,7 +73,7 @@ const Login = ({setIsLogin, setMemberId}) => {
         formData.append("m_pw", mPw);
 
         $.ajax({
-            url: 'http://localhost:8090/member/member_login',
+            url: `${SERVER_URL}/member/member_login`,
             method: 'post',
             processData: false,
             contentType: false,

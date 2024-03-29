@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import $ from 'jquery';
 import { printLog } from '../util/logger.js';
+import { SERVER_URL } from '../util/const';
 
 const DEFAULT_COMPONENT_NAME = 'Home';
 
@@ -22,7 +23,7 @@ const Home = ({setIsLogin, setMemberId}) => {
         formData.append("sessionID", sessionID);
     
         $.ajax({
-            url: 'http://localhost:8090/member/get_member',
+            url: `${SERVER_URL}/member/get_member`,
             method: 'POST',
             processData: false,
             contentType: false,
